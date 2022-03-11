@@ -3,10 +3,10 @@ import axios from 'axios';
 const url = 'https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&titles=pizza';
 const word = 'pizza';
 
-async function main(word) {
+const main = async (word) => {
   try {
     const regWord = `\\b${word}\\b`;
-    const specificWord = new RegExp(regWord,"g");
+    const specificWord = new RegExp(regWord, "g");
     const getData = await axios.get(url);
     const getDataKey = Object.keys(getData.data.query.pages)
     const getDataStr = getData.data.query.pages[getDataKey].extract;
@@ -18,7 +18,7 @@ async function main(word) {
   }
 }
 
-async function countWord(str, find) {
+const countWord = async (str, find) => {
   return (str.split(find)).length - 1;
 }
 
